@@ -73,6 +73,18 @@ class BST:
                 willVisit.append(current.right)
         return visited
 
+    def validateBst(self, tree):
+        return self.bstHelper(tree, float("-inf"), float("inf"))
+
+    def bstHelper(self, tree, min, max):
+        if tree is None:
+            return True
+        if tree.value < min or tree.value >= max:
+            return False
+        leftChild = self.bstHelper(tree.left, min, tree.value)
+        return leftChild and self.bstHelper(tree.right, tree.value, max)
+        
+
 
 class Node:
     def __init__(self, value):
@@ -88,7 +100,7 @@ def main():
     bst.insert(12)
     bst.insert(7)
     bst.insert(9)
-    print(bst.BFS())
+    print(bst.validateBst(bst.root))
 
 
 if __name__ == "__main__":
