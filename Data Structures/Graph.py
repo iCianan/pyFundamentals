@@ -27,6 +27,16 @@ class Graph:
                 for neighbor in neighbors:
                     queue.append(neighbor)
         return visited
+    
+    def DFS(self, start, results = [], visited = {}):
+        if self.adjacencyList[start] is None:
+            return
+        results.append(start)
+        visited[start] = True
+        for neighbor in self.adjacencyList[start]:
+            if neighbor not in visited:
+                self.DFS(neighbor, results, visited)
+        return results
 
 
 
@@ -34,15 +44,21 @@ class Graph:
 def main():
     graph = Graph()
     graph.addVertex('Bitcoin')
-    graph.addVertex('Litecoin')
-    graph.addVertex('ZCash')
+    graph.addVertex('0x')
+    graph.addVertex('Cardano')
     graph.addVertex('Horizen')
     graph.addVertex('Ethereum')
-    graph.addEdges('Bitcoin', 'Litecoin')
-    graph.addEdges('Litecoin', 'ZCash')
-    graph.addEdges('ZCash', 'Horizen')
-    graph.addEdges('Ethereum', 'Horizen')
-    print(graph.BFS('ZCash'))
+    graph.addVertex('Monero')
+    graph.addEdges('Bitcoin', 'Ethereum')
+    graph.addEdges('Bitcoin', 'Horizen')
+    graph.addEdges('Bitcoin', 'Cardano')
+    graph.addEdges('Bitcoin', 'Monero')
+    graph.addEdges('Cardano', 'Horizen')
+    graph.addEdges('Cardano', 'Ethereum')    
+    graph.addEdges('Ethereum', '0x')
+    graph.addEdges('Monero', 'Horizen')
+    print(graph.BFS('Monero'))
+    print(graph.DFS('Monero'))
 
 
 if __name__ == "__main__":

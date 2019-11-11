@@ -83,6 +83,21 @@ class BST:
             return False
         leftChild = self.bstHelper(tree.left, min, tree.value)
         return leftChild and self.bstHelper(tree.right, tree.value, max)
+    
+    def isValidBST(self, root) -> bool:     
+        queue = deque()
+        queue.append(root)
+        while len(queue) > 0:
+            current = queue.popleft()
+            if current.left != None:
+                if current.value <= current.left.value:
+                    return False
+                queue.append(current.left)
+            if current.right != None:
+                if current.value >= current.right.value:
+                    return False
+                queue.append(current.right)
+        return True        
         
 
 
@@ -101,6 +116,8 @@ def main():
     bst.insert(7)
     bst.insert(9)
     print(bst.validateBst(bst.root))
+    print(bst.isValidBST(bst.root))
+
 
 
 if __name__ == "__main__":
