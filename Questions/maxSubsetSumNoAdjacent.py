@@ -2,7 +2,12 @@
 # representing the max sum of non-adjacent elements in the array.
 # If a sum cannot be generated, return 0
 
+
 def maxSubsetSumNoAdjacent(array):
+    if not len(array):
+        return 0
+    elif len(array) == 1:
+        return array[0]
     maxSums = {}
     maxSums[0] = array[0]
     maxSums[1] = max(array[0], array[1])
@@ -11,11 +16,13 @@ def maxSubsetSumNoAdjacent(array):
             return maxSums[i]
         else:
             maxSums[i] = max(maxSums[i-1], maxSums[i-2] + array[i])
-    return max(maxSums, key=maxSums.get)
+    return max(maxSums.values())
+
 
 def main():
-    nums = [75,105,120,75,90,135]
+    nums = [75, 105, 120, 75, 90, 135]
     print(maxSubsetSumNoAdjacent(nums))
-    
+
+
 if __name__ == "__main__":
     main()
