@@ -16,6 +16,10 @@ def moveZeroesMaster(nums):
         if nums[i] == 0:
             del nums[i]
             nums.append(0)
+    for i in range(len(nums)):
+        if nums[i] == 0:
+            del nums[i]
+            nums.append(0)
 
 
 def main():
