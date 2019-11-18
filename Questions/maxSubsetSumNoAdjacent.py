@@ -29,7 +29,7 @@ def maxSubsetSumNoAdjacentPro(array):
 
 
 def main():
-    nums = [4,3,5,200,5,3]
+    nums = [4, 3, 5, 200, 5, 3]
     print(maxSubsetSumNoAdjacent(nums))
     print(maxSubsetSumNoAdjacentPro(nums))
 
